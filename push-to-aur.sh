@@ -1,6 +1,8 @@
 #!/usr/bin/env bash
 # this script syncs the branches in this repo to their counterpart AUR package repos
 
+THIS_BRANCH=$(git rev-parse --abbrev-ref HEAD)
+
 BRANCHES=$(git branch --column)
 BRANCHES=${BRANCHES/\*/}
 BRANCHES=${BRANCHES/master/}
@@ -18,5 +20,7 @@ for i in ${BRANCHES[@]}; do
         git push ${i}-AUR +${i}:master
         git remote remove ${i}-AUR
 done
+
+git checkout $THIS_BRANCH
 
 git push --all origin
