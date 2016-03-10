@@ -18,3 +18,5 @@ for i in ${BRANCHES[@]}; do
         git push ${i}-AUR +${i}:master
         git remote remove ${i}-AUR
 done
+
+git push --all origin
