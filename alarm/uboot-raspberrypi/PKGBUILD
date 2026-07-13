@@ -7,7 +7,7 @@ pkgdesc="U-Boot for Raspberry Pi"
 arch=('aarch64')
 url='https://docs.u-boot.org/en/latest'
 license=('GPL')
-backup=('boot/boot.txt' 'boot/boot.scr' 'boot/config.txt')
+backup=('boot/boot.txt' 'boot/boot.scr')
 makedepends=('bc' 'dtc' 'git' 'util-linux')
 source=(
         "https://github.com/u-boot/u-boot/archive/refs/tags/v${pkgver/rc/-rc}.tar.gz"
@@ -50,7 +50,7 @@ package() {
   #cp u-boot.bin ${pkgdir}/boot/kernel8.img
   cp ../boot.txt.v3 ../boot.txt
 
-  echo "enable_uart=1" > "${pkgdir}/boot/"config.txt
+  #echo "enable_uart=1" > "${pkgdir}/boot/"config.txt
   tools/mkimage -A arm -O linux -T script -C none -n "Das U-Boot script" -d ../boot.txt "${pkgdir}"/boot/boot.scr
   cp ../{boot.txt,mkscr} "${pkgdir}"/boot
 }
