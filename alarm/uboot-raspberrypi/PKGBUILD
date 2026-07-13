@@ -1,9 +1,7 @@
 # U-Boot: Raspberry Pi
-# Maintainer: Kevin Mihelich <kevin@archlinuxarm.org>
-# Maintainer: graysky <therealgraysky@proton.me>
 
 pkgname=uboot-raspberrypi
-pkgver=2025.01
+pkgver=2026.07
 pkgrel=1
 pkgdesc="U-Boot for Raspberry Pi"
 arch=('armv7h' 'aarch64')
@@ -53,7 +51,7 @@ source=(
         'boot.txt.v2'
         'boot.txt.v3'
         'mkscr')
-md5sums=('eae6d6ed62c30dd516e6f46b272553e8'
+md5sums=('c3adbc2e7e3d489f12bef71c31e9cb80'
          'f3798c944c390b54e2bec37d9aac9500'
          '1fbf8530914a7f9e5e6a1398db4b1811'
          'd97efea18b9e18bae318f5bcea3c2878'
@@ -93,8 +91,8 @@ md5sums=('eae6d6ed62c30dd516e6f46b272553e8'
 prepare() {
   cd u-boot-${pkgver/rc/-rc}
 
-  patch -p1 -i ../0001-rpi-increase-space-for-kernel.patch
-  patch -p1 -i ../0002-fix-serial-console.patch
+  #patch -p1 -i ../0001-rpi-increase-space-for-kernel.patch
+  #patch -p1 -i ../0002-fix-serial-console.patch
 }
 
 build() {
