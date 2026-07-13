@@ -4,89 +4,22 @@ pkgname=uboot-raspberrypi
 pkgver=2026.07
 pkgrel=1
 pkgdesc="U-Boot for Raspberry Pi"
-arch=('armv7h' 'aarch64')
+arch=('aarch64')
 url='https://docs.u-boot.org/en/latest'
 license=('GPL')
 backup=('boot/boot.txt' 'boot/boot.scr' 'boot/config.txt')
 makedepends=('bc' 'dtc' 'git' 'util-linux')
-conflicts_armv7h=('linux-rpi' 'linux-rpi-16k')
-_commit=f2a25fcbdfac418c22a2083791cbc99fe32a93d8
 source=(
-        # these work for aarch64 but not for armv7h
         "https://github.com/u-boot/u-boot/archive/refs/tags/v${pkgver/rc/-rc}.tar.gz"
-        "https://github.com/raspberrypi/firmware/raw/${_commit}/boot/bcm2710-rpi-2-b.dtb"
-        "https://github.com/raspberrypi/firmware/raw/${_commit}/boot/bcm2710-rpi-3-b-plus.dtb"
-        "https://github.com/raspberrypi/firmware/raw/${_commit}/boot/bcm2710-rpi-3-b.dtb"
-        "https://github.com/raspberrypi/firmware/raw/${_commit}/boot/bcm2710-rpi-cm3.dtb"
-        "https://github.com/raspberrypi/firmware/raw/${_commit}/boot/bcm2710-rpi-zero-2-w.dtb"
-        "https://github.com/raspberrypi/firmware/raw/${_commit}/boot/bcm2710-rpi-zero-2.dtb"
-        "https://github.com/raspberrypi/firmware/raw/${_commit}/boot/bcm2711-rpi-4-b.dtb"
-        "https://github.com/raspberrypi/firmware/raw/${_commit}/boot/bcm2711-rpi-400.dtb"
-        "https://github.com/raspberrypi/firmware/raw/${_commit}/boot/bcm2711-rpi-cm4-io.dtb"
-        "https://github.com/raspberrypi/firmware/raw/${_commit}/boot/bcm2711-rpi-cm4.dtb"
-        "https://github.com/raspberrypi/firmware/raw/${_commit}/boot/bcm2711-rpi-cm4s.dtb"
-        "https://github.com/raspberrypi/firmware/raw/${_commit}/boot/bcm2712-rpi-5-b.dtb"
-        "https://github.com/raspberrypi/firmware/raw/${_commit}/boot/bcm2712-rpi-500.dtb"
-        "https://github.com/raspberrypi/firmware/raw/${_commit}/boot/bcm2712d0-rpi-5-b.dtb"
-        "https://github.com/raspberrypi/firmware/raw/${_commit}/boot/bcm2712-rpi-cm5-cm4io.dtb"
-        "https://github.com/raspberrypi/firmware/raw/${_commit}/boot/bcm2712-rpi-cm5-cm5io.dtb"
-        # these are from linux-armv7-6.9.8-1
-        bcm2710-rpi-3-b-plus.v7
-        bcm2710-rpi-3-b.v7
-        bcm2710-rpi-zero-2.v7
-        bcm2710-rpi-zero-2-w.v7
-        bcm2710-rpi-cm3.v7
-        bcm2711-rpi-cm4.v7
-        bcm2711-rpi-cm4s.v7
-        bcm2712-rpi-5-b.v7
-        bcm2712-rpi-cm5-cm4io.v7
-        bcm2712d0-rpi-5-b.v7
-        bcm2712-rpi-cm5-cm5io.v7
-        # these are from linux-armv7-6.13-1
-        bcm2711-rpi-4-b.v7
-        bcm2711-rpi-400.v7
-        bcm2711-rpi-cm4-io.v7
         '0001-rpi-increase-space-for-kernel.patch'
         '0002-fix-serial-console.patch'
-        'boot.txt.v2'
         'boot.txt.v3'
         'mkscr')
-md5sums=('c3adbc2e7e3d489f12bef71c31e9cb80'
-         'f3798c944c390b54e2bec37d9aac9500'
-         '1fbf8530914a7f9e5e6a1398db4b1811'
-         'd97efea18b9e18bae318f5bcea3c2878'
-         '53c5c4f80b89dcbf549c4c7c37439a3e'
-         '51e2af158a8e7ef3dd792f2c594bf5cd'
-         '51e2af158a8e7ef3dd792f2c594bf5cd'
-         '6a8f893c7738bdd2a7109af0b5562e86'
-         '2c67aeae94f2aa479d95d7a45064eaae'
-         'c45d2fbcea6f0af038c81860205d93d1'
-         '31575d1152ac6568f835b32a3e1c602a'
-         '813ebc37a6d80e11651309159cc82e6d'
-         '152d0e4276d52d02237714c3d8fcfa2e'
-         'bea1f42977bb004d50f35af111ca01ce'
-         '043d1ca11201baa5cf61f667774a0414'
-         'b7ffc8a6ca698e8dbfad4948b5beb663'
-         '240d211c9e9588a3bcfd439ef4f3ab24'
-         '0190cba24f7a637cdf6019d6750c59ff'
-         'c291d947389308411e3779782522f7c3'
-         '7e9846deb2c8f81283ccae35240258e1'
-         '7e9846deb2c8f81283ccae35240258e1'
-         '8dea82ecb9ec769246767836c74fb8f7'
-         '687902e98a5e4367a2b0f3914752a0c9'
-         'fbfe64dc18614d75d22955eeb3a8cae1'
-         '94abb358fd4af83907dc16e19b65d4f3'
-         '9fb99782610680f2c5457afb65a60826'
-         'd8619315e6c8896df1727008b7e9359f'
-         '8d16fd383d663662ca60f750a69ed732'
-         '8036ecf8bdc3e174ed6dcc6d1711716f'
-         '051a6d4fa0c903c7d39ad530c1796f3e'
-         'eff27a37a8e4a96fe660970b07a37b2c'
-         '636c8ac2098ebf0acdc2ff15430edf0d'
-         'a63d6cde8e45c00075e0df23ff71a0f4'
-         'f8ad4508b9734e9e13aedb9f7419d7a3'
-         'be8abe44b86d63428d7ac3acc64ee3bf'
-         '021623a04afd29ac3f368977140cfbfd')
+b2sums=('0af0aec520ccc098c24ae65cebf61f8c89d708a13228059d30087b53c558ef2708594ec1e09c9cff7c88d111ebe99317edd159c8456636ece3fd8d75fca46387'
+        'fb70aabde822f5633b200d4a27adcb12fbfb6fb0b628749ffba263cbce5f523bb83091900c77ef7272ee436409c73e37fb17bc55cd70b84dd7d7d63971bae924'
+        '9e6c8c571a1522a1f4d5cac0212f921ca7090122a80c5bf1e6eb9fa8065f1df491b6b56b232215b1c69d0d96a88e5d397dea50f5e37c6aec785f15e401b4e4df'
+        '4c4df2efb5f17c53ce35c012c082096ee9535548443c5f041193ac18063649bd6afa69a3b998154fdc278dd5131e150b0b019885c99b6eb1cd0a720d65dcdd98'
+        '4ea782264696aa85e30847413088bd338e2beb2ec4e57c2808f80af28ac613ab4ae82b37eb0ff902e66f8a12082a1f9a546bbf20dfeb4c43f59f465987043ede')
 
 prepare() {
   cd u-boot-${pkgver/rc/-rc}
@@ -103,9 +36,8 @@ build() {
   unset CPPFLAGS
 
   make distclean
-  [[ $CARCH == "armv7h" ]] && make rpi_2_config
-  [[ $CARCH == "aarch64" ]] && make rpi_arm64_config
-  echo 'CONFIG_IDENT_STRING=" Arch Linux ARM"' >> .config
+  make rpi_arm64_config
+  echo 'CONFIG_IDENT_STRING=" Arch Linux"' >> .config
   make EXTRAVERSION=-${pkgrel}
 }
 
@@ -114,18 +46,11 @@ package() {
 
   mkdir -p "${pkgdir}"/boot
 
-  if [[ $CARCH == "armv7h" ]]; then
-    cp u-boot.bin ${pkgdir}/boot/kernel7.img
-    cp ../boot.txt.v2 ../boot.txt
-    cp ../*.v7 ${pkgdir}/boot
-    rename .v7 .dtb ${pkgdir}/boot/*
-  elif [[ $CARCH == "aarch64" ]]; then
-    cp u-boot.bin ${pkgdir}/boot/kernel8.img
-    cp ../*.dtb ${pkgdir}/boot
-    cp ../boot.txt.v3 ../boot.txt
-  fi
+  cp u-boot.bin "${pkgdir}/boot/".
+  #cp u-boot.bin ${pkgdir}/boot/kernel8.img
+  cp ../boot.txt.v3 ../boot.txt
 
-  echo "enable_uart=1" > ${pkgdir}/boot/config.txt
-  tools/mkimage -A arm -O linux -T script -C none -n "U-Boot boot script" -d ../boot.txt "${pkgdir}"/boot/boot.scr
+  echo "enable_uart=1" > "${pkgdir}/boot/"config.txt
+  tools/mkimage -A arm -O linux -T script -C none -n "Das U-Boot script" -d ../boot.txt "${pkgdir}"/boot/boot.scr
   cp ../{boot.txt,mkscr} "${pkgdir}"/boot
 }
